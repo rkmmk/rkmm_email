@@ -19,7 +19,7 @@
       function authClick() {
       // Your Client ID is retrieved from your project 
       //in the Developer Console => https://console.developers.google.com
-          var CLIENT_ID = 'mygoogleid.apps.googleusercontent.com';
+          var CLIENT_ID = '261089695697-b4a2ac07iiik0npdhaud3860isou7bfh.apps.googleusercontent.com'; //'mygoogleid.apps.googleusercontent.com';
           var SCOPES = ["https://www.googleapis.com/auth/contacts.readonly"];
 
           gapi.auth.authorize(
@@ -63,7 +63,7 @@
       {
           var request = gapi.client.people.people.connections.list({
               'resourceName': 'people/me',
-                  'pageSize': 100,
+                  'pageSize': 500,
                   'requestMask.includeField': '
                       person.phone_numbers,person.organizations,person.email_addresses,person.names'
               });
