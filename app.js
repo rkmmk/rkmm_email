@@ -51,15 +51,21 @@
     );
   }
 
+  divtableresult.innerHTML = '';
+
   /**
    * Show Contacts Details display on a table pagesize = 100 connections.
    */
-  function showContacts() {
+  function showContacts(nextPageToken) {
     //https://people.googleapis.com/v1/otherContacts
-    var request = gapi.client.people.otherContacts.list({
-      //pageSize: 500,
+    var requestBody = {
+      pageSize: 500,
       readMask: "names,emailAddresses",
-    });
+    };
+    if(nextPageToken) {
+      requestBody.nextPageToken = nextPageToken;
+    }
+    var request = gapi.client.people.otherContacts.list(requestBody);
 
     request.execute(function (resp) {
       var connections = resp.otherContacts;
@@ -77,14 +83,16 @@
               : []
           );
         }
-        divtableresult.innerHTML =
-          "Contacts found : <br>" +
+        divtableresult.innerHTML +=
+          "<br><br>==================================================<br>Contacts found : <br>" +
           emails.length +
           "<br> <br>" +
-          emails.join("; ");
-      } else {
-        divtableresult.innerHTML = "";
-        divauthresult.innerText = "No Contacts found!";
+          emails.join("; ") +
+          "<br>==================================================";
+      }
+
+      if(resp.nextPageToken) {
+        showContacts(resp.nextPageToken);
       }
     });
   }
