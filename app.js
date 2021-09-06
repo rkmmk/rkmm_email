@@ -59,7 +59,7 @@
   function showContacts(nextPageToken) {
     //https://people.googleapis.com/v1/otherContacts
     var requestBody = {
-      pageSize: 500,
+      pageSize: 150,
       readMask: "names,emailAddresses",
     };
     if(nextPageToken) {
