@@ -63,7 +63,7 @@
       readMask: "names,emailAddresses",
     };
     if(nextPageToken) {
-      requestBody.nextPageToken = nextPageToken;
+      requestBody.pageToken = nextPageToken;
     }
     var request = gapi.client.people.otherContacts.list(requestBody);
 
